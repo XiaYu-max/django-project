@@ -1,0 +1,89 @@
+=========================
+Django Project Git 流程說明
+=========================
+
+版本：初始版
+日期：2026-03-26
+
+---------------------------------
+一、初始化分支（從零開始）
+---------------------------------
+
+1️⃣ Step 1：確保專案資料夾不空
+   - Git 無法追蹤空資料夾
+   - 建議至少建立一個 README.md
+     Windows 命令：
+       echo "# Django Project" > README.md
+
+2️⃣ Step 2：初始化 Git（如果尚未初始化）
+       git init
+
+3️⃣ Step 3：第一次 commit
+       git add .
+       git commit -m "init project"
+
+4️⃣ Step 4：建立 master 分支
+       git branch -M master
+       git remote add origin https://github.com/XiaYu-max/django-project.git
+       git push -u origin master
+
+5️⃣ Step 5：建立 dev 分支
+       git checkout -b dev
+       git push -u origin dev
+
+---------------------------------
+二、日常開發流程
+---------------------------------
+
+1️⃣ 切到 dev 分支進行開發
+       git checkout dev
+
+2️⃣ 建立功能分支（建議）
+       git checkout -b feature/your-feature-name
+
+3️⃣ 編寫程式後提交
+       git add .
+       git commit -m "完成某功能"
+
+4️⃣ 合併回 dev
+       git checkout dev
+       git merge feature/your-feature-name
+
+5️⃣ 推送 dev 到遠端
+       git push origin dev
+
+---------------------------------
+三、發布版本（dev → master）
+---------------------------------
+
+1️⃣ 切到 master
+       git checkout master
+
+2️⃣ 合併 dev
+       git merge dev
+
+3️⃣ 推送 master
+       git push origin master
+
+---------------------------------
+四、補充說明
+---------------------------------
+
+- master：正式穩定版本
+- dev：日常開發分支
+- feature/*：功能開發分支
+- GitHub 預設分支若為 main，可自行修改為 master
+- 確保第一次 commit 之前資料夾內至少有一個檔案，避免 push 失敗
+
+---------------------------------
+五、常用指令
+---------------------------------
+
+查看本地分支：
+       git branch
+
+查看遠端：
+       git remote -v
+
+查看目前狀態：
+       git status
