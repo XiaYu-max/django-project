@@ -1,0 +1,4 @@
+@echo off
+cd /d "%~dp0"
+echo === 連線到 Vagrant VM ===
+vagrant ssh

@@ -1,0 +1,34 @@
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: django
+      POSTGRES_USER: django
+      POSTGRES_PASSWORD: django
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  web:
+    image: python:3.11
+    command: >
+      bash -c '
+      if [ ! -f /app/manage.py ]; then
+        pip install --upgrade pip &&
+        pip install django psycopg2-binary &&
+        django-admin startproject config /app;
+      fi &&
+      cd /app &&
+      python manage.py runserver 0.0.0.0:8000
+      '
+    volumes:
+      - .:/app
+    working_dir: /app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:

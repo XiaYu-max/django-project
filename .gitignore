@@ -1,0 +1,53 @@
+# === Vagrant ===
+.vagrant/
+
+# === Python ===
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+*.egg
+dist/
+build/
+eggs/
+*.whl
+
+# === Django ===
+*.log
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+static_collected/
+
+# === Environment ===
+.env
+.env.*
+*.env
+venv/
+env/
+.venv/
+
+# === IDE / Editor ===
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# === Docker ===
+postgres_data/
+
+# === OS ===
+*.tmp
+*.bak
+*.orig
+
+# === Vagrant batch scripts (可選，看你要不要上傳) ===
+# vagrant_*.bat

@@ -1,0 +1,20 @@
+{
+    // Python / Django 設定
+    "python.defaultInterpreterPath": "/usr/local/bin/python",
+    // Remote SSH 設定 - 連線到 Vagrant VM
+    "remote.SSH.configFile": "${env:USERPROFILE}\\.ssh\\config",
+    "remote.SSH.defaultExtensions": [
+        "ms-python.python",
+        "ms-python.debugpy"
+    ],
+    // 檔案排除
+    "files.exclude": {
+        "**/.git": true,
+        "**/.vagrant": true,
+        "**/__pycache__": true,
+        "**/*.pyc": true
+    },
+    // 編輯器設定
+    "files.encoding": "utf8",
+    "editor.formatOnSave": true
+}
