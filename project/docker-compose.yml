@@ -12,21 +12,21 @@ services:
 
   web:
     image: python:3.11
+    environment:
+      - PYTHONUNBUFFERED=1
     command: >
       bash -c '
-      if [ ! -f /app/manage.py ]; then
-        pip install --upgrade pip &&
-        pip install django psycopg2-binary &&
-        django-admin startproject config /app;
-      fi &&
+      pip install --upgrade pip &&
+      pip install django psycopg2-binary debugpy &&
       cd /app &&
-      python manage.py runserver 0.0.0.0:8000
+      python -Xfrozen_modules=off -m debugpy --listen 0.0.0.0:5678 manage.py runserver 0.0.0.0:8000 --noreload
       '
     volumes:
       - .:/app
     working_dir: /app
     ports:
       - "8000:8000"
+      - "5678:5678"
     depends_on:
       - db
 

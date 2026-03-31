@@ -1,6 +1,6 @@
 {
-    // Python / Django 設定
-    "python.defaultInterpreterPath": "/usr/local/bin/python",
+    // Python / Django 設定（Remote SSH 連到 VM 時使用）
+    "python.defaultInterpreterPath": "/usr/bin/python3",
     // Remote SSH 設定 - 連線到 Vagrant VM
     "remote.SSH.configFile": "${env:USERPROFILE}\\.ssh\\config",
     "remote.SSH.defaultExtensions": [

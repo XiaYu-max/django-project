@@ -16,7 +16,8 @@
                 }
             ],
             "django": true,
-            "justMyCode": true
+            "justMyCode": true,
+            "restart": true
         },
         {
             "name": "Django: Local Debug (直接在 VM 跑)",
