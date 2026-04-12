@@ -16,5 +16,6 @@
     },
     // 編輯器設定
     "files.encoding": "utf8",
+    "files.autoGuessEncoding": true,
     "editor.formatOnSave": true
 }

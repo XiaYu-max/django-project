@@ -26,8 +26,7 @@
             "program": "${workspaceFolder}/project/manage.py",
             "args": [
                 "runserver",
-                "0.0.0.0:8000",
-                "--noreload"
+                "0.0.0.0:8000"
             ],
             "django": true,
             "justMyCode": true

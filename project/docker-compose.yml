@@ -19,7 +19,7 @@ services:
       pip install --upgrade pip &&
       pip install django psycopg2-binary debugpy &&
       cd /app &&
-      python -Xfrozen_modules=off -m debugpy --listen 0.0.0.0:5678 manage.py runserver 0.0.0.0:8000 --noreload
+      python -Xfrozen_modules=off -m debugpy --listen 0.0.0.0:5678 manage.py runserver 0.0.0.0:8000
       '
     volumes:
       - .:/app

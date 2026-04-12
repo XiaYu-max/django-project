@@ -51,10 +51,23 @@ VS Code 日常開發操作流程
     - Django Logs (All)  → 看所有容器（Django + PostgreSQL）的 log
   按 Ctrl+C 停止查看
 
-【三、修改程式碼後重啟 Django】
-  Ctrl+Shift+B → 自動重啟 Django 容器（約 25 秒）
-  ※ 因為使用 debugpy + --noreload，Django 不會自動偵測檔案變更
-  ※ 每次改完程式碼都要 Ctrl+Shift+B 重啟
+【三、修改程式碼後要做什麼？】
+
+  ※ Django 已開啟自動 reload：改 .py 存檔後 Django 會自動重載，不需要手動 restart
+
+  你做了什麼                    要做什麼
+  ──────────────────────────────────────────────────
+  改 Python / Django 程式碼  →  直接存檔，Django 自動重載
+  改 models.py（資料表結構） →  雙擊 restart_django.bat → 選 [1] migrate
+  改 HTML / template         →  直接刷新瀏覽器就好
+  改 settings.py             →  雙擊 restart_django.bat → 選 [2] restart
+  改 docker-compose.yml      →  雙擊 restart_django.bat → 選 [3] recreate
+  Container 當掉 / 沒反應    →  雙擊 restart_django.bat → 選 [2] restart
+
+  不確定？→ 選 [2] restart 通常都能解決
+
+  ※ 直接雙擊 restart_django.bat 會出現選單
+  ※ 選單按 H 可以看上面這張表
 
 【四、Debug 斷點除錯】
   1. 打開要除錯的 Python 檔案，點行號左邊放紅色斷點
