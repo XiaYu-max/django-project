@@ -44,6 +44,9 @@ desktop.ini
 # === Docker ===
 postgres_data/
 
+# === Frontend ===
+project/frontend/node_modules/
+
 # === OS ===
 *.tmp
 *.bak
