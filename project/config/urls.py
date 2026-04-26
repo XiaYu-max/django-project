@@ -1,30 +1,27 @@
 """
 URL configuration for config project.
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+規則：
+  - 不在這裡手動新增模組路由
+  - 模組 API 路由由 core.loader.get_api_urlpatterns() 自動掛載
+  - 路由格式：/api/<manifest api_prefix>/<resource>/
 """
+
 from django.contrib import admin
-from django.http import JsonResponse
 from django.urls import path
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-
-def health_check(request):
-    status = "ok"  # <-- 在這行下斷點（第 22 行）
-    return JsonResponse({"status": status})
+from core.loader import get_api_urlpatterns
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('health/', health_check, name='health_check'),
+
+    # JWT 登入：POST /api/auth/token/        → 取得 access + refresh token
+    # JWT 刷新：POST /api/auth/token/refresh/ → 用 refresh token 換新 access token
+    path('api/auth/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+
+    # 各模組 API（從 manifest.py 的 api_prefix 自動掛載）
+    *get_api_urlpatterns(),
 ]

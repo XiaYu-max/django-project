@@ -2,7 +2,13 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Django: Remote Debug (Docker in Vagrant)",
+            // 使用流程：
+            // 1. 確認 VM 已啟動（vagrant_up.bat）
+            // 2. 確認容器已啟動（docker compose up -d）
+            // 3. 在程式碼設好中斷點
+            // 4. 按 F5 附加偵錯器
+            // 5. 用瀏覽器或 API 工具觸發請求，即可命中中斷點
+            "name": "Django: Attach (Docker in Vagrant)",
             "type": "debugpy",
             "request": "attach",
             "connect": {
@@ -18,18 +24,6 @@
             "django": true,
             "justMyCode": true,
             "restart": true
-        },
-        {
-            "name": "Django: Local Debug (直接在 VM 跑)",
-            "type": "debugpy",
-            "request": "launch",
-            "program": "${workspaceFolder}/project/manage.py",
-            "args": [
-                "runserver",
-                "0.0.0.0:8000"
-            ],
-            "django": true,
-            "justMyCode": true
         }
     ]
 }

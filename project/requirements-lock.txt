@@ -1,0 +1,11 @@
+# 鎖定版本（由 pip freeze 產生，確保每台機器版本一致）
+# 更新方式：pip freeze > requirements-lock.txt
+asgiref==3.11.1
+debugpy==1.8.20
+Django==5.2.13
+django-filter==25.2
+djangorestframework==3.17.1
+djangorestframework_simplejwt==5.5.1
+psycopg2-binary==2.9.12
+PyJWT==2.12.1
+sqlparse==0.5.5
