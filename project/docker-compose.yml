@@ -17,7 +17,7 @@ services:
     command: >
       bash -c '
       pip install --upgrade pip &&
-      pip install django psycopg2-binary debugpy &&
+      pip install -r /app/requirements-dev.txt &&
       cd /app &&
       python -Xfrozen_modules=off -m debugpy --listen 0.0.0.0:5678 manage.py runserver 0.0.0.0:8000
       '
@@ -30,5 +30,29 @@ services:
     depends_on:
       - db
 
+  frontend:
+    image: node:20
+    command: sh -c "npm install && npm run dev"
+    volumes:
+      - ./frontend:/app
+      - frontend_node_modules:/app/node_modules
+    working_dir: /app
+    # 不對外開放 5173，只讓 nginx 內部存取
+    expose:
+      - "5173"
+    depends_on:
+      - web
+
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+      - frontend
+
 volumes:
   postgres_data:
+  frontend_node_modules:

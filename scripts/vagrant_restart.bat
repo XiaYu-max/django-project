@@ -1,7 +1,0 @@
-@echo off
-cd /d "%~dp0.."
-echo === ­«±Ò Vagrant VM ===
-vagrant reload
-echo.
-echo VM ¤w­«±Ò
-pause
